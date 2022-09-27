@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gunman</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./app.js"></script>
+</head>
+<body>
+    <div id="game-frame" onclick="myGunSound.play()">
+        <div id="health-bar"></div>
+        <div class="enemy" id="enemy__1" onclick="iShoot(this)"></div>
+        <div class="enemy" id="enemy__2" onclick="iShoot(this)"></div>
+        <div class="enemy" id="enemy__3" onclick="iShoot(this)"></div>
+        <div class="enemy" id="enemy__4" onclick="iShoot(this)"></div>
+        <div class="enemy" id="enemy__5" onclick="iShoot(this)"></div>
+
+        <div id="start-btn" onclick="newGame()">START GAME</div>
+    </div>
+</body>
+</html>
