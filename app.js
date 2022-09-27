@@ -47,7 +47,7 @@ function enemyAppears(enemy){
 }
 
 function enemyShoots(enemy){
-    if(enemy.classList.contains('dead')) return;
+    if(enemy.classList.contains('dead') || !enemy.classList.contains('showing')) return;
 
     enemyGunSound.play();
 
