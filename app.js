@@ -7,7 +7,10 @@ const enemyGunSound = new Audio('./assets/toy-gun-shot.wav');
 enemyGunSound.volume = 0.6;
 const oofSound = new Audio('./assets/oof.wav')
 
-healthPoints = 100;
+let healthPoints = 100;
+let enemies = [];
+const enemyCount = 10;
+const damageAmount = 25;
 
 function updateHealthPoints(points){
     healthPoints = points;
@@ -39,11 +42,11 @@ function enemyAppears(enemy){
 
     setTimeout( () => {
         enemyShoots(enemy);
-    }, 1000);
+    }, 888);
 
     setTimeout( () => {
         enemy.classList.remove('showing');
-    }, 3000);
+    }, 1200);
 }
 
 function enemyShoots(enemy){
@@ -52,7 +55,7 @@ function enemyShoots(enemy){
     enemyGunSound.play();
 
     enemy.classList.add('shooting');
-    updateHealthPoints(healthPoints - 25);
+    updateHealthPoints(healthPoints - damageAmount);
 
     setTimeout( () => {
         enemy.classList.remove('shooting');
@@ -68,7 +71,7 @@ function randomEnemyAttacks(){
     randomEnemyNumber = Math.floor(randomEnemyNumber);
     let enemy = livingEnemies()[randomEnemyNumber];
 
-    let randomDelay = Math.random() * 2000 + 1000;
+    let randomDelay = Math.random() * 1500 + 500;
 
     setTimeout( () => {
         enemyAppears(enemy);
@@ -76,7 +79,30 @@ function randomEnemyAttacks(){
     }, randomDelay)
 }
 
+function spawnEnemies(){
+    for (let i = 0; i < enemyCount; i++ ){
+        spawnNewEnemy();
+    }
+}
+
+function spawnNewEnemy(){
+    const gameFrame = document.getElementById('game-frame');
+    const rect = gameFrame.getBoundingClientRect();
+    let randomLeftPostion = Math.random() * rect.width;
+    randomLeftPostion = Math.floor(randomLeftPostion);
+    randomLeftPostion = Math.min(randomLeftPostion, rect.width - 150);
+
+    const enemyElement = document.createElement('div');
+    enemyElement.classList.add('enemy');
+    enemyElement.setAttribute("onclick","iShoot(this)");
+    enemyElement.style.left = randomLeftPostion + 'px';
+    gameFrame.appendChild(enemyElement);
+
+    enemies.push(enemyElement);
+}
+
 function newGame(){
+    spawnEnemies();
     randomEnemyAttacks();
     document.querySelector('#start-btn').style.display = 'none';
     music.play();

@@ -97,7 +97,8 @@ body{
 }
 
 .enemy.shooting{
-    background-color: red;
+    background: linear-gradient(rgb(44, 31, 31), rgb(29, 15, 15));
+    box-shadow: inset 0 1em 1em rgb(187, 93, 93);
 }
 
 .enemy.shooting:after{
@@ -121,9 +122,3 @@ body{
     content: ' *_* ';
     color: #555;
 }
-
-#enemy__1{ left: 5px;}
-#enemy__2{ left: 165px;}
-#enemy__3{ left: 325px;}
-#enemy__4{ left: 485px;}
-#enemy__5{ left: 645px;}
